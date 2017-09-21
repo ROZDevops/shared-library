@@ -1,10 +1,5 @@
-def call(body) {
-    // evaluate the body block, and collect configuration into the object
-    def config = [:]
-    body.resolveStrategy = Closure.DELEGATE_FIRST
-    body.delegate = config
-    body()
-
+def call() {
+    
     def buildInfo = Artifactory.newBuildInfo()
     buildInfo.env.capture = true
     def server = Artifactory.server 'artifactory-server'

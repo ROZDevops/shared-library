@@ -1,6 +1,6 @@
 package com.relus
 
-class AemCommands {
+class AemCommands implements Serializable{
 
   def artifactory
   def server

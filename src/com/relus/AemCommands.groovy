@@ -6,7 +6,14 @@ class AemCommands implements Serializable{
   def server
   def rtMaven
 
-  AemCommands(script) {
+  private static AemCommands instance
+  
+  static AemCommands getInstance(args) { 
+    if (!instance) instance = new AemCommands(args)
+    return instance
+  }
+
+  private AemCommands(script) {
     artifactory = script.Artifactory;
     server = artifactory.server 'artifactory-server'
     rtMaven = artifactory.newMavenBuild()

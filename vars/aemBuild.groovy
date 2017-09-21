@@ -1,4 +1,11 @@
-def call(String name='nombre') {
+def call(String name = "" ) {
     
-    echo "Hello, ${name}"
+    
+
+
+
+    // now build, based on the configuration provided
+    stage ("build") {
+      echo "aaaa"
+    }
 }

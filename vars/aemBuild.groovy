@@ -1,3 +1,5 @@
+import com.relus.AemCommands
+
 def call(String name = "" ) {
     
     
@@ -9,6 +11,7 @@ def call(String name = "" ) {
 
     // now build, based on the configuration provided
     stage ("build") {
-      rtMaven.run pom: 'pom.xml', goals: 'clean test'
+      //rtMaven.run pom: 'pom.xml', goals: 'clean test'
+      AemCommands.build rtMaven
     }
 }

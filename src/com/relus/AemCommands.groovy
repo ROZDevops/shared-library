@@ -10,8 +10,12 @@ def flushServerList(aemDispatcherUser, aemDispatcherPassword, serverList) {
     }
 }
 
+def build(rtMaven){
+  rtMaven.run pom: 'pom.xml', goals: 'clean test'
+}
 
-def build(){
+
+def deploy(rtMaven, modules){
   for (art_id in ["mb-nafta.ui.content", "mb-nafta.ui.apps", "mb-nafta.vehicles-data.apps", "mb-nafta.vehicles-data.content"]){
     rtMaven.run pom: 'pom.xml', goals: "com.day.jcr.vault:content-package-maven-plugin:install \
       -P presentationTooling -D presentation.mode=normal -P autoInstallPackage -P autoInstallContent \

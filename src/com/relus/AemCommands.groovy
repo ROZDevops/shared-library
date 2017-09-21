@@ -1,4 +1,5 @@
 package com.relus
+import org.jfrog.hudson.pipeline.types.MavenBuild
 
 def flushCache(aemDispatcherUser, aemDispatcherPassword, dispatcherNode) {
     sh "curl -k -u \\\"\\$aemDispatcherUser\\\":\\$aemDispatcherPassword -X POST -H \\\"CQ-Action: deactivate\\\" -H \\\"CQ-Handle: /\\\" -H \\\"Content-Length: 0\\\" http://$dispatcherNode/dispatcher/invalidate.cache"
@@ -10,7 +11,7 @@ def flushServerList(aemDispatcherUser, aemDispatcherPassword, serverList) {
     }
 }
 
-def build(rtMaven){
+def build(org.jfrog.hudson.pipeline.types.MavenBuild rtMaven){
   rtMaven.run pom: 'pom.xml', goals: 'clean test'
 }
 

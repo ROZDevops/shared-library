@@ -33,7 +33,7 @@ def deploy(rtMaven, modules){
   }
 }
 
-def deployContent(aemUser, aemPassword, host, port, autoInstallContent, hostProtocol){
+/*def deployContent(aemUser, aemPassword, host, port, autoInstallContent, hostProtocol){
   
   //autoInstallContent and hostProtocol are true or false, we create the string chain depending on those values
   
@@ -90,4 +90,4 @@ def deployPublishList(aemUser, aemUser, hostProtocol, port, publishHostList, pub
       
         deployPublish(aemUser, aemUser, hostProtocol, port, it, publishProtocol, autoInstallContentPublish)
     }
-}
+}*/

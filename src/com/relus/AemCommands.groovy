@@ -9,7 +9,12 @@ class AemCommands implements Serializable{
   private static AemCommands instance
   
   static AemCommands getInstance(args) { 
-    if (!instance) instance = new AemCommands(args)
+    if (!instance) {
+      args.echo "    -> new instance"
+      instance = new AemCommands(args)
+    }else{
+      args.echo "    -> old instance"
+    }
     return instance
   }
 

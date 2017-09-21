@@ -6,6 +6,6 @@ def call(String name = "" ) {
 
     // now build, based on the configuration provided
     stage ("build") {
-      helper.build 
+      helper.build()
     }
 }

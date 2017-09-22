@@ -48,8 +48,7 @@ class AemCommands implements Serializable{
     for (art_id in modules){
       /*rtMaven.run pom: 'pom.xml', goals: */
       script.echo "com.day.jcr.vault:content-package-maven-plugin:install \
-        -P presentationTooling -D presentation.mode=normal -P autoInstallPackage -P autoInstallContent \
-        ${params} \
+        ${params} ${autoInstallContent?'-P autoInstallContent':''} \
         -Daem.host=author1-patch.aws.mbusa.com \
         -Daem.port=4502 \
         -Dvault.userId=\"${AEM_USER}\" \

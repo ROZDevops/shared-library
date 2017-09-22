@@ -43,7 +43,7 @@ class AemCommands implements Serializable{
       }
   }
 
-  def deploy(AEM_USER, AEM_PASSWORD, modules, String params= "-P presentationTooling -D presentation.mode=normal -P autoInstallContent" ){
+  def deploy(AEM_USER, AEM_PASSWORD, modules, String params= "-P presentationTooling -D presentation.mode=normal -P autoInstallPackage", autoInstallContent ){
     def pom = script.readMavenPom file: 'pom.xml'
     for (art_id in modules){
       /*rtMaven.run pom: 'pom.xml', goals: */
@@ -64,11 +64,11 @@ class AemCommands implements Serializable{
     }
 
     
-    script.echo params
-    script.echo pom.version
+    script.echo "autoInstallContent set to ${autoInstallContent?'SI':'NO'}"
+    
   }
 
-  /*def deployContent(aemUser, aemPassword, host, port, autoInstallContent, hostProtocol){
+  def deployContent(aemUser, aemPassword, host, port, autoInstallContent, hostProtocol){
     
     //autoInstallContent and hostProtocol are true or false, we create the string chain depending on those values
     
@@ -95,7 +95,7 @@ class AemCommands implements Serializable{
    }
   }
 
-  def deployPublish(aemUser, aemUser, hostProtocol, port, publishHost, publishProtocol, autoInstallContentPublish){
+  /*def deployPublish(aemUser, aemUser, hostProtocol, port, publishHost, publishProtocol, autoInstallContentPublish){
     
       withMaven(maven: 'apache-maven-3.3.9', globalMavenSettingsConfig: 'a4511c59-8ad2-4dde-ad4b-29a7f99a4c55'){
         

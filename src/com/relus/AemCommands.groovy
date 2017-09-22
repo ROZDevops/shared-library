@@ -2,6 +2,7 @@ package com.relus
 
 class AemCommands implements Serializable{
 
+  def script
   def artifactory
   def server
   def rtMaven
@@ -19,7 +20,8 @@ class AemCommands implements Serializable{
   }
 
   private AemCommands(script) {
-    artifactory = script.Artifactory;
+    this.script = script
+    artifactory = script.Artifactory
     server = artifactory.server 'artifactory-server'
     rtMaven = artifactory.newMavenBuild()
     rtMaven.tool = 'M3' // Tool name from Jenkins configuration
@@ -57,7 +59,7 @@ class AemCommands implements Serializable{
         -Dvault.verbose=true \
         -U".toString()
     }*/
-    echo AEM_USER
+    script.echo AEM_USER
   }
 
   /*def deployContent(aemUser, aemPassword, host, port, autoInstallContent, hostProtocol){

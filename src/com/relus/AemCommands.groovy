@@ -41,10 +41,8 @@ class AemCommands implements Serializable{
       }
   }
 
-
-
-  def deploy(rtMaven, modules){
-    for (art_id in ["mb-nafta.ui.content", "mb-nafta.ui.apps", "mb-nafta.vehicles-data.apps", "mb-nafta.vehicles-data.content"]){
+  def deploy(AEM_USER, AEM_PASSWORD, modules){
+    /*for (art_id in modules){
       rtMaven.run pom: 'pom.xml', goals: "com.day.jcr.vault:content-package-maven-plugin:install \
         -P presentationTooling -D presentation.mode=normal -P autoInstallPackage -P autoInstallContent \
         -Daem.host=author1-patch.aws.mbusa.com \
@@ -58,7 +56,8 @@ class AemCommands implements Serializable{
         -Dvault.failOnMissingEmbed=true \
         -Dvault.verbose=true \
         -U".toString()
-    }
+    }*/
+    echo AEM_USER
   }
 
   /*def deployContent(aemUser, aemPassword, host, port, autoInstallContent, hostProtocol){

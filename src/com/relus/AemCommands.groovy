@@ -60,7 +60,7 @@ class AemCommands implements Serializable{
         -U".toString()
     }*/
 
-    pom = script.readMavenPom file: 'pom.xml'
+    def pom = script.readMavenPom file: 'pom.xml'
     script.echo params
     script.echo pom.version
   }

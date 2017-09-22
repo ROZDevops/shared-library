@@ -45,9 +45,9 @@ class AemCommands implements Serializable{
 
   def deploy(AEM_USER, AEM_PASSWORD, modules, String params= "-P presentationTooling -D presentation.mode=normal -P autoInstallContent" ){
     def pom = script.readMavenPom file: 'pom.xml'
-    /*for (art_id in modules){
-      rtMaven.run pom: 'pom.xml', goals: 
-      */script.echo "com.day.jcr.vault:content-package-maven-plugin:install \
+    for (art_id in modules){
+      /*rtMaven.run pom: 'pom.xml', goals: */
+      script.echo "com.day.jcr.vault:content-package-maven-plugin:install \
         -P presentationTooling -D presentation.mode=normal -P autoInstallPackage -P autoInstallContent \
         ${params} \
         -Daem.host=author1-patch.aws.mbusa.com \
@@ -61,7 +61,7 @@ class AemCommands implements Serializable{
         -Dvault.failOnMissingEmbed=true \
         -Dvault.verbose=true \
         -U".toString()
-    /*}*/
+    }
 
     
     script.echo params

@@ -43,7 +43,7 @@ class AemCommands implements Serializable{
       }
   }
 
-  def deploy(AEM_USER, AEM_PASSWORD, modules){
+  def deploy(AEM_USER, AEM_PASSWORD, modules, String params= "-P presentationTooling -D presentation.mode=normal -P autoInstallContent" ){
     /*for (art_id in modules){
       rtMaven.run pom: 'pom.xml', goals: "com.day.jcr.vault:content-package-maven-plugin:install \
         -P presentationTooling -D presentation.mode=normal -P autoInstallPackage -P autoInstallContent \
@@ -59,7 +59,10 @@ class AemCommands implements Serializable{
         -Dvault.verbose=true \
         -U".toString()
     }*/
-    script.echo AEM_USER
+
+    pom = script.readMavenPom file: 'pom.xml'
+    script.echo params
+    script.echo pom.version
   }
 
   /*def deployContent(aemUser, aemPassword, host, port, autoInstallContent, hostProtocol){

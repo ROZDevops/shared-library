@@ -1,6 +1,6 @@
 import com.relus.AemCommands
 
-def call(String name = "" ) {
+def call() {
     
     def helper = AemCommands.getInstance(this);
 

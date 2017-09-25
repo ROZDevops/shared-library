@@ -9,22 +9,22 @@ class AemCommands implements Serializable{
 
   private static AemCommands instance
   
-  static AemCommands getInstance(args) { 
+  static AemCommands getInstance(args, mvn_id) { 
     if (!instance) {
       args.echo "    -> new instance"
-      instance = new AemCommands(args)
+      instance = new AemCommands(args, mvn_id)
     }else{
       args.echo "    -> old instance"
     }
     return instance
   }
 
-  private AemCommands(script) {
+  private AemCommands(script, mvn_id) {
     this.script = script
     artifactory = script.Artifactory
     server = artifactory.server 'artifactory-server'
     rtMaven = artifactory.newMavenBuild()
-    rtMaven.tool = 'M3' // Tool name from Jenkins configuration
+    rtMaven.tool = mvn_id // Tool name from Jenkins configuration
     rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server: server
     rtMaven.resolver releaseRepo: 'libs-releases', snapshotRepo: 'libs-snapshot', server: server
   }

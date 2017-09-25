@@ -1,10 +1,10 @@
 import com.relus.AemCommands
 
-def call() {
+def call(String stageName="build") {
     
     def helper = AemCommands.getInstance(this);
 
-    stage ("build") {
+    stage (stageName) {
       helper.build()
     }
 }

@@ -1,11 +1,14 @@
 package com.relus
 
+import groovy.json.JsonSlurper
+
 class AemCommands implements Serializable{
 
   def script
   def artifactory
   def server
   def rtMaven
+  private config
 
   private static AemCommands instance
   
@@ -20,11 +23,13 @@ class AemCommands implements Serializable{
   }
 
   private AemCommands(script) {
+    def jsonSlurper = new JsonSlurper()
+    config = jsonSlurper.parseText(this.libraryResource 'com/relus/defaults.json') 
     this.script = script
     artifactory = script.Artifactory
     server = artifactory.server 'artifactory-server'
     rtMaven = artifactory.newMavenBuild()
-    rtMaven.tool = mvn_id // Tool name from Jenkins configuration
+    rtMaven.tool = config.maven_config_name // Tool name from Jenkins configuration
     rtMaven.deployer releaseRepo: 'libs-release-local', snapshotRepo: 'libs-snapshot-local', server: server
     rtMaven.resolver releaseRepo: 'libs-releases', snapshotRepo: 'libs-snapshot', server: server
   }

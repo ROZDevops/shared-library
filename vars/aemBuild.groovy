@@ -5,7 +5,8 @@ def call(String stageName="build") {
     def helper = AemCommands.getInstance(this);
 
     stage (stageName) {
-      echo libraryResource 'com/relus/defaults.json'
+      def request = libraryResource 'com/relus/defaults.json'
+      echo request
       helper.build()
     }
 }

@@ -23,8 +23,9 @@ class AemCommands implements Serializable{
   }
 
   private AemCommands(script) {
-    def jsonSlurper = new JsonSlurper()
-    config = jsonSlurper.parseText(this.libraryResource 'com/relus/defaults.json') 
+    this.echo this.libraryResource 'com/relus/defaults.json'
+    //def jsonSlurper = new JsonSlurper()
+    //config = jsonSlurper.parseText() 
     this.script = script
     artifactory = script.Artifactory
     server = artifactory.server 'artifactory-server'
